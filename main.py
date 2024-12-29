@@ -32,28 +32,61 @@ class jogo:
             else:
                 self.nome_jogadores[i].append("resistencia")
     
+    def show_function(self):
+        for i in range(0, self.numero_jogadores):
+            input(self.nome_jogadores[i][0], " aperte enter para ver sua função")
+            input(self.nome_jogadores[i][0], " você é: ", self.nome_jogadores[i][1], end='\r')
+            input()
+    
     def leader_order(self, leader, round):
         #this function must be completed later
+        print(" O lider da rodada é: ", self.nome_jogadores[leader],[0])
         if round == 1:
             leader_choice = 2
+            list_restricted = []
+            chosed = []
             for i in range(0, leader_choice):
-                pass
+                self.print_and_save_options(leader, self.list_options, list_restricted, chosed)
+            print ( "Os selecionados para a missão foram: ",  chosed)
+
         elif round == 2:
             leader_choice = 3
+            list_restricted = []
             for i in range(0, leader_choice):
                 pass
         elif round == 3:
+            list_restricted = []
             leader_choice = 3
             for i in range(0, leader_choice):
                 pass
         elif round == 4:
             leader_choice = 4
+            list_restricted = []
             for i in range(0, leader_choice):
                 pass
         elif round == 5:
             leader_choice = 4
+            list_restricted = []
             for i in range(0, leader_choice):
                 pass
+    
+    def list_options(self):
+        list = []
+        for i in range(0, self.nome_jogadores):
+            list.extend(self.nome_jogadores[i][0])
+        list = [item.center(15, " ") for item in list]
+        list = "|".join(list)
+        return list
+    
+    def print_and_save_options(self, leader, list, restrictions, chosen_list):
+        print (self.nome_jogadores[leader][0], "suas opções de escolha são: \n")
+        for i in list:
+            if list.index(list) not in restrictions:
+                print(list(i), end="")
+        chosen = input("Quem voce chamará para a missão?")
+        restrictions.extend(list.index(chosen))
+        chosen_list.extend(chosen)
+
         
 
     def mission_aproval(self):
