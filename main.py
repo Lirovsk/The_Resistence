@@ -34,8 +34,13 @@ class jogo:
     
     def leader_order(self, leader, round):
         #this function must be completed later
+        print("O líder da missão é o(a) ", self.nome_jogadores[leader], "\n")
+        input("Pressione enter para escolher as pessoa para a sua missão")
+
         if round == 1:
             leader_choice = 2
+            list_restrict = []
+            self.show_leader_options(self.leader_option(leader), list_restrict)
             for i in range(0, leader_choice):
                 pass
         elif round == 2:
@@ -54,7 +59,24 @@ class jogo:
             leader_choice = 4
             for i in range(0, leader_choice):
                 pass
-        
+    
+    def leader_option(self, leader):
+        showing_options = []
+        for i in range (0, self.nome_jogadores):
+            showing_options.extend(self.nome_jogadores[i][0])
+        for item in showing_options:
+            showing_options = item.center(15, " ")
+        showing_options = "|".join(showing_options)
+        print("O líder da missão é: ", self.nome_jogadores[leader][0])
+        return showing_options
+    
+    def show_leader_options(self, list, list_restriction):
+        print("Suas opções de escolha são: \n")
+        for i in list:
+            if list.index(i) not in list_restriction:
+                print(i, end= "")
+            
+
 
     def mission_aproval(self):
         aproving_votes = 0
