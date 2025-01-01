@@ -52,23 +52,35 @@ class jogo:
         elif round == 2:
             leader_choice = 3
             list_restricted = []
+            chosed = []
             for i in range(0, leader_choice):
-                pass
+                self.print_and_save_options(leader, self.list_options, list_restricted, chosed)
+            print ( "Os selecionados para a missão foram: ",  chosed)
+
         elif round == 3:
             list_restricted = []
             leader_choice = 3
+            chosed = []
             for i in range(0, leader_choice):
-                pass
+                self.print_and_save_options(leader, self.list_options, list_restricted, chosed)
+            print ( "Os selecionados para a missão foram: ",  chosed)
+
         elif round == 4:
             leader_choice = 4
             list_restricted = []
+            chosed = []
             for i in range(0, leader_choice):
-                pass
+                self.print_and_save_options(leader, self.list_options, list_restricted, chosed)
+            print ( "Os selecionados para a missão foram: ",  chosed)
+
         elif round == 5:
             leader_choice = 4
             list_restricted = []
+            chosed = []
             for i in range(0, leader_choice):
-                pass
+                self.print_and_save_options(leader, self.list_options, list_restricted, chosed)
+            print ( "Os selecionados para a missão foram: ",  chosed)
+
     
     def list_options(self):
         list = []
@@ -113,3 +125,44 @@ class jogo:
             print(f"A missão obeteve {aproving_votes} votos a favor e {rejecting_votes} votos contra.")
             final_aproval = False
         return final_aproval
+
+#Begining of the code/game
+TEXTO_1 = """"
+                .___________. __    __   _______ 
+                |           ||  |  |  | |   ____|
+                `---|  |----`|  |__|  | |  |__   
+                    |  |     |   __   | |   __|  
+                    |  |     |  |  |  | |  |____ 
+                    |__|     |__|  |__| |_______| """
+TEXTO_2 = """
+██████╗ ███████╗███████╗██╗███████╗████████╗███████╗███╗   ██╗ ██████╗███████╗
+██╔══██╗██╔════╝██╔════╝██║██╔════╝╚══██╔══╝██╔════╝████╗  ██║██╔════╝██╔════╝
+██████╔╝█████╗  ███████╗██║███████╗   ██║   █████╗  ██╔██╗ ██║██║     █████╗  
+██╔══██╗██╔══╝  ╚════██║██║╚════██║   ██║   ██╔══╝  ██║╚██╗██║██║     ██╔══╝  
+██║  ██║███████╗███████║██║███████║   ██║   ███████╗██║ ╚████║╚██████╗███████╗
+╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚══════╝
+                                                                              """
+TEXTO_3 = """Bem vindo ao jogo de estratégia e espioangem para ser jogado em grupo!
+                         Aperte qualquer tecla para continuar"""
+TEXTO_4 = "Insira o núnero de jogadores da partida: "
+
+print(TEXTO_1, "\n", TEXTO_2)
+input(TEXTO_3)
+numero_players=input(TEXTO_4)
+
+jogo1 = jogo(numero_players)
+round_aux = 0
+time_player = randint(0,6)
+keep_playing = True
+jogo1.show_function
+rejections = 0
+while keep_playing:
+    jogo1.leader_order(time_player, round_aux)
+    result = jogo1.mission_aproval()
+    if result:
+        round_aux +=1
+        #função de missão
+    else:
+        rejections += 1
+    
+    
