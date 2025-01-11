@@ -31,6 +31,7 @@ class jogo:
                     created_spys += 1
                 else:
                     self.nome_jogadores[i].append("resistencia")
+            
             else:
                 self.nome_jogadores[i].append("resistencia")
     
@@ -46,71 +47,77 @@ class jogo:
     
     def leader_order(self, leader, round):
         #this function must be completed later
-        print(" O lider da rodada é: ", self.nome_jogadores[leader],[0])
+        print("\n \nO lider da rodada é: ", self.nome_jogadores[leader][0])
+        sleep(1)
+        print("\n")
         round_local = int(round)
         if round_local == 1:
             leader_choice = 2
             list_restricted = []
             chosed = []
+            lista = self.list_options()
             for i in range(0, leader_choice):
-                self.print_and_save_options(leader, self.list_options, list_restricted, chosed)
-            print ( "Os selecionados para a missão foram: ",  chosed)
+                self.print_and_save_options(leader, lista, list_restricted, chosed)
+            print ( "\n \nOs selecionados para a missão foram: ",  chosed)
             return chosed
 
         elif round_local == 2:
             leader_choice = 3
             list_restricted = []
             chosed = []
+            lista = self.list_options()
             for i in range(0, leader_choice):
-                self.print_and_save_options(leader, self.list_options, list_restricted, chosed)
-            print ( "Os selecionados para a missão foram: ",  chosed)
+                self.print_and_save_options(leader, lista, list_restricted, chosed)
+            print ( "\n \nOs selecionados para a missão foram: ",  chosed)
             return chosed
 
         elif round_local == 3:
             list_restricted = []
             leader_choice = 3
             chosed = []
+            lista = self.list_options()
             for i in range(0, leader_choice):
-                self.print_and_save_options(leader, self.list_options, list_restricted, chosed)
-            print ( "Os selecionados para a missão foram: ",  chosed)
+                self.print_and_save_options(leader, lista, list_restricted, chosed)
+            print ( "\n \nOs selecionados para a missão foram: ",  chosed)
             return chosed
 
         elif round_local == 4:
             leader_choice = 4
             list_restricted = []
             chosed = []
+            lista = self.list_options()
             for i in range(0, leader_choice):
-                self.print_and_save_options(leader, self.list_options, list_restricted, chosed)
-            print ( "Os selecionados para a missão foram: ",  chosed)
+                self.print_and_save_options(leader, lista, list_restricted, chosed)
+            print ( "\n \nOs selecionados para a missão foram: ",  chosed)
             return chosed
 
         elif round_local == 5:
             leader_choice = 4
             list_restricted = []
             chosed = []
+            lista = self.list_options()
             for i in range(0, leader_choice):
-                self.print_and_save_options(leader, self.list_options, list_restricted, chosed)
-            print ( "Os selecionados para a missão foram: ",  chosed)
+                self.print_and_save_options(leader, lista, list_restricted, chosed)
+            print ( "\n \nOs selecionados para a missão foram: ",  chosed)
             return chosed
 
     
     def list_options(self):
         list = []
-        for i in range(0, self.nome_jogadores):
-            list.extend(self.nome_jogadores[i][0])
-        list = [item.center(15, " ") for item in list]
-        list = "|".join(list)
+        for i in range(0, self.numero_jogadores):
+            list.append(self.nome_jogadores[i][0])
+            #print(list)
         return list
     
     def print_and_save_options(self, leader, list_aux, restrictions, chosen_list):
-        print (self.nome_jogadores[leader][0], "suas opções de escolha são: \n")
-        list(list_aux)
-        for i in range|(0, len(list)):
-            if list.index(list) not in restrictions:
-                print(list(i), end="")
-        chosen = input("Quem voce chamará para a missão?")
-        restrictions.extend(list.index(chosen))
-        chosen_list.extend(chosen)
+        #print (list_aux)
+        print ("\n\n", self.nome_jogadores[leader][0], "suas opções de escolha são:")
+        for i in range(0, len(list_aux)):
+            if list_aux.index(list_aux[i]) not in restrictions:
+                print(list_aux[i], end=" ")
+        chosen = input("\n \nQuem voce chamará para a missão?\n")
+        restrictions.append(list_aux.index(chosen))
+        chosen_list.append(chosen)
 
         
 
@@ -121,7 +128,7 @@ class jogo:
         types_of_aproval = ["aprovo", "sim", "aceito", "ok"]
         for i in range(0, self.numero_jogadores):
             vote = input(f"{self.nome_jogadores[i][0]}, você aprova a missão? ")
-            print(Cursor.UP(1), " "*50)
+            print(Cursor.UP(1), " "*50, Cursor.UP(1))
             if vote.lower() in types_of_aproval:
                 aproving_votes += 1
             else:
@@ -148,39 +155,51 @@ class jogo:
         positive_awnser = ["sim", "ok", "s", "y"]
         negative_awnser = ["não", "nao", "n", "nop"]
         if round_local in [1,2,3,5]:
-            for i in list_of_players:
+            #print("controle: ", list_of_players)
+            for i in range(0, len(list_of_players)):
+                #print (i)
                 print(f"{list_of_players[i]}, deseja sabotar essa missão?")
                 result_incurssoin = input()
+                print(Cursor.UP(1), " "*70, Cursor.UP(2))
                 if result_incurssoin in positive_awnser:
-                    List_result.extend(1)
+                    List_result.append(1)
                 elif result_incurssoin in negative_awnser:
-                    List_result.extend(0)
-                for i in List_result:
-                    if List_result[i] == 1:
-                        positive += 1
-                    else:
-                        negative += 1
-                if negative > 0:
-                    return False
+                    List_result.append(0)
+            for a in range(0,len(List_result)):
+                #print(a)
+                #print(List_result)
+                if List_result[a] == 0:
+                    positive += 1
                 else:
-                    return True
+                    negative += 1
+                #print(List_result)
+            if negative > 0:
+                return False
+            else:
+                return True
         else:
-            for i in list_of_players:
+            #print("controle: ", list_of_players)
+            for i in range(0, len(list_of_players)):
+                #print (i)
                 print(f"{list_of_players[i]}, deseja sabotar essa missão?")
                 result_incurssoin = input()
+                print(Cursor.UP(1), " "*50, Cursor.UP(1))
                 if result_incurssoin in positive_awnser:
-                    List_result.extend(1)
+                    List_result.append(1)
                 elif result_incurssoin in negative_awnser:
-                    List_result.extend(0)
-                for i in List_result:
-                    if List_result[i] == 1:
-                        positive += 1
-                    else:
-                        negative += 1
-                if negative >= 2:
-                    return False
+                    List_result.append(0)
+            for a in range(0,len(List_result)):
+                #print(a)
+                #print(List_result)
+                if List_result[a] == 0:
+                    positive += 1
                 else:
-                    return True
+                    negative += 1
+                #print(List_result)
+            if negative > 1:
+                return False
+            else:
+                return True
 
 
 class TEXT:
