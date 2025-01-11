@@ -1,6 +1,7 @@
 from time import *
 from random import *
 import os
+from colorama import Cursor, init
 class jogo:
     def __init__(self, numero_jogadores):
         self.numero_jogadores = int(numero_jogadores)
@@ -36,7 +37,7 @@ class jogo:
     def show_functions(self):
         os.system('cls')
         for i in range(0, self.numero_jogadores):
-            print(text.TEXT_THE, text.TEXT_RESISTENCE)
+            print(TEXT.THE, TEXT.RESISTENCE)
             print(self.nome_jogadores[i][0], end=' ')
             input( "aperte enter para ver sua função")
             print(self.nome_jogadores[i][0], "você é:", self.nome_jogadores[i][1])
@@ -46,7 +47,8 @@ class jogo:
     def leader_order(self, leader, round):
         #this function must be completed later
         print(" O lider da rodada é: ", self.nome_jogadores[leader],[0])
-        if round == 1:
+        round_local = int(round)
+        if round_local == 1:
             leader_choice = 2
             list_restricted = []
             chosed = []
@@ -55,7 +57,7 @@ class jogo:
             print ( "Os selecionados para a missão foram: ",  chosed)
             return chosed
 
-        elif round == 2:
+        elif round_local == 2:
             leader_choice = 3
             list_restricted = []
             chosed = []
@@ -64,7 +66,7 @@ class jogo:
             print ( "Os selecionados para a missão foram: ",  chosed)
             return chosed
 
-        elif round == 3:
+        elif round_local == 3:
             list_restricted = []
             leader_choice = 3
             chosed = []
@@ -73,7 +75,7 @@ class jogo:
             print ( "Os selecionados para a missão foram: ",  chosed)
             return chosed
 
-        elif round == 4:
+        elif round_local == 4:
             leader_choice = 4
             list_restricted = []
             chosed = []
@@ -82,7 +84,7 @@ class jogo:
             print ( "Os selecionados para a missão foram: ",  chosed)
             return chosed
 
-        elif round == 5:
+        elif round_local == 5:
             leader_choice = 4
             list_restricted = []
             chosed = []
@@ -100,9 +102,10 @@ class jogo:
         list = "|".join(list)
         return list
     
-    def print_and_save_options(self, leader, list, restrictions, chosen_list):
+    def print_and_save_options(self, leader, list_aux, restrictions, chosen_list):
         print (self.nome_jogadores[leader][0], "suas opções de escolha são: \n")
-        for i in list:
+        list(list_aux)
+        for i in range|(0, len(list)):
             if list.index(list) not in restrictions:
                 print(list(i), end="")
         chosen = input("Quem voce chamará para a missão?")
@@ -118,6 +121,7 @@ class jogo:
         types_of_aproval = ["aprovo", "sim", "aceito", "ok"]
         for i in range(0, self.numero_jogadores):
             vote = input(f"{self.nome_jogadores[i][0]}, você aprova a missão? ")
+            print(Cursor.UP(1), " "*50)
             if vote.lower() in types_of_aproval:
                 aproving_votes += 1
             else:
@@ -139,10 +143,11 @@ class jogo:
     def incursion_success (self, list_of_players, round):
         List_result = []
         positive = 0
+        round_local = int(round)
         negative = 0
         positive_awnser = ["sim", "ok", "s", "y"]
         negative_awnser = ["não", "nao", "n", "nop"]
-        if round in [1,2,3,5]:
+        if round_local in [1,2,3,5]:
             for i in list_of_players:
                 print(f"{list_of_players[i]}, deseja sabotar essa missão?")
                 result_incurssoin = input()
@@ -178,17 +183,16 @@ class jogo:
                     return True
 
 
-class text:
-    #class designed to store all the text that will be used in the game
-    def __init__(self):
-        self.TEXT_THE = TEXTO_1 = """"
+class TEXT:
+    #class designed to store all the TEXT that will be used in the game
+    THE = """
                 .___________. __    __   _______ 
                 |           ||  |  |  | |   ____|
                 `---|  |----`|  |__|  | |  |__   
                     |  |     |   __   | |   __|  
                     |  |     |  |  |  | |  |____ 
                     |__|     |__|  |__| |_______| """
-        self.TEXT_RESISTENCE =  """
+    RESISTENCE =  """
 ██████╗ ███████╗███████╗██╗███████╗████████╗███████╗███╗   ██╗ ██████╗███████╗
 ██╔══██╗██╔════╝██╔════╝██║██╔════╝╚══██╔══╝██╔════╝████╗  ██║██╔════╝██╔════╝
 ██████╔╝█████╗  ███████╗██║███████╗   ██║   █████╗  ██╔██╗ ██║██║     █████╗  
@@ -196,8 +200,30 @@ class text:
 ██║  ██║███████╗███████║██║███████║   ██║   ███████╗██║ ╚████║╚██████╗███████╗
 ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚══════╝
                                                                               """
-        self.TEXT_WELCOME = """Bem vindo ao jogo de estratégia e espioangem para ser jogado em grupo!
+    WELCOME = """Bem vindo ao jogo de estratégia e espioangem para ser jogado em grupo!
                         Aperte qualquer tecla para continuar"""
-        self.TEXT_CONFIG = "Insira o núnero de jogadores da partida: "
-        self.TEXT_GAME_START = """O jogo está prestes a começar, atenção aos seu arredores! A pessoa ao seu lado pode ser um espião"""
+    CONFIG = "Insira o núnero de jogadores da partida: "
+    GAME_START = """O jogo está prestes a começar, atenção aos seu arredores! A pessoa ao seu lado pode ser um espião"""
+
+class cmd_config: 
+    CLEAR = 'cls'
+    
+    COLOR = 'color'
+    PRETO = '0'
+    AZUL = '1'
+    VERDE = '2'
+    VERDE_AGUA = '3'
+    VERMELHO = '4'
+    ROXO = '5'
+    AMARELO = '6'
+    BRANCO = '7'
+    CINZA = '8'
+    AZUL_CLARO = '9'
+    VERDE_CLARO = 'A'
+    VERDE_AGUA_CLARO = 'B'
+    VERMELHO_CLARO = 'C'
+    LILAS = 'D'
+    AMARELO_CLARO = 'E'
+    BRANCO_CLARO = 'F'
+
     pass

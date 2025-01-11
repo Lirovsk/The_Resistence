@@ -2,9 +2,9 @@ from classes import *
 from random import randint
 
 
-print(text.TEXT_THE, "\n", text.TEXT_RESISTENCE)
-input(text.TEXT_WELCOME)
-numero_players=input(text.TEXT_CONFIG)
+print(TEXT.THE, "\n",TEXT.RESISTENCE)
+input(TEXT.WELCOME)
+numero_players=input( TEXT.CONFIG)
 positive_awnser = ["sim", "ok", "s", "y"]
 negative_awnser = ["não", "nao", "n", "nop"]
 
@@ -15,15 +15,15 @@ jogo1.show_functions()
 
 while same_game:
 
-    print(text.TEXT_GAME_START)
+    print(TEXT.GAME_START)
     input("(Aperte Enter)")
     round_aux = 1
-    time_player = randint(0,6)
+    max = int(numero_players) - 1
+    time_player = randint(0, max)
     keep_playing = True
     rejections = 0
     resistence_points = 0
     spy_points = 0
-    jogo1.show_functions()
     while keep_playing:
         jogadores_selecionados = jogo1.leader_order(time_player, round_aux)
         result = jogo1.mission_aproval()
