@@ -1,8 +1,9 @@
 from time import *
 from random import *
+import os
 class jogo:
     def __init__(self, numero_jogadores):
-        self.numero_jogadores = numero_jogadores
+        self.numero_jogadores = int(numero_jogadores)
         self.numero_espioes= 0
         self.nome_jogadores = []
 
@@ -33,10 +34,14 @@ class jogo:
                 self.nome_jogadores[i].append("resistencia")
     
     def show_function(self):
+        os.system('cls')
         for i in range(0, self.numero_jogadores):
-            input(self.nome_jogadores[i][0], " aperte enter para ver sua função")
-            input(self.nome_jogadores[i][0], " você é: ", self.nome_jogadores[i][1], end='\r')
-            input()
+            print(TEXTO_1, TEXTO_2)
+            print(self.nome_jogadores[i][0], end=' ')
+            input( "aperte enter para ver sua função")
+            print(self.nome_jogadores[i][0], "você é:", self.nome_jogadores[i][1])
+            input("Aperte qualquer tecla para esconder sua identidade antes de passaar o aparelho para o próximo jogador")
+            os.system('cls')
     
     def leader_order(self, leader, round):
         #this function must be completed later
@@ -202,8 +207,11 @@ negative_awnser = ["não", "nao", "n", "nop"]
 
 jogo1 = jogo(numero_players)
 same_game = True
+jogo1.show_function()
 
+'''
 while same_game:
+
     print(TEXTO_5)
     input("(Aperte Enter)")
     round_aux = 1
@@ -236,4 +244,4 @@ while same_game:
         continue
     if input in negative_awnser:
         break
-    
+'''

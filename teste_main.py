@@ -1,5 +1,5 @@
+import os 
 from time import sleep
-print("Ola, pessoas", end='\r')
-input()
-
-print(" " * 30, end='\r')
+print('Hello World')
+input("Press Enter to continue...")
+os.system('cls')
